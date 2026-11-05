@@ -5,10 +5,10 @@ Dependency-free command-line client for **AgentReady.me — agent journey audits
 ## Try from this repository
 
 ```sh
-node packages/cli/bin/agentready.mjs scan example.com
-node packages/cli/bin/agentready.mjs scan example.com --json --no-browser
-node packages/cli/bin/agentready.mjs scan example.com --publish-report
-node packages/cli/bin/agentready.mjs report opaque-report-id --json
+node bin/agentready.mjs scan example.com
+node bin/agentready.mjs scan example.com --json --no-browser
+node bin/agentready.mjs scan example.com --publish-report
+node bin/agentready.mjs report opaque-report-id --json
 ```
 
 After npm publication, the intended interface is:
@@ -38,7 +38,7 @@ Claude Code setup:
 claude mcp add --transport http agentready https://www.agentready.me/api/mcp
 ```
 
-The public MCP tools are `scan_url`, `get_fix_pack`, `verify_fixes`, and `get_public_report`. The normal loop is scan → select fixes → implement with repository-specific review → deploy → verify the same stable finding IDs.
+The public MCP tools are `scan_url`, `get_fix_pack`, `verify_fixes`, `get_public_report`, `check_crawler_access`, `audit_openapi_readiness`, and `validate_a2a_agent_card`. The normal loop is scan (the response already includes Fix Pack v2) → select fixes → implement with repository-specific review → deploy → verify the same stable finding IDs. Calling `get_fix_pack` immediately after `scan_url` would perform another scan. Missing verification coverage remains unobservable.
 
 ## Publication status
 
